@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 type Props = {
+  /** 印字する文字 */
   character: string;
 }
 
@@ -19,8 +20,8 @@ const Border = styled.div`
   `}
 `;
 
-export function Key({ character }: Props) {
-  const isLarge = character.length > 1;
+export default function Key({ character }: Props) {
+  const isLarge = character.length > 1; // 複数文字は特殊キーとする
   const text = isLarge ? character : character.toUpperCase();
 
   return (

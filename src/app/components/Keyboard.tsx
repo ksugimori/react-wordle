@@ -1,5 +1,5 @@
 import React from "react";
-import { Key } from "./Key";
+import Key from "./Key";
 import styled from "styled-components";
 
 // キーボードの並び
@@ -14,7 +14,7 @@ const Row = styled.div`
   justify-content: center;
 `
 
-export function Keyboard() {
+export default function Keyboard() {
   const rows = keys.map(row => row.map(c => <Key character={c} />));
 
   return (
