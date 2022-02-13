@@ -15,7 +15,7 @@ const Row = styled.div`
 `
 
 export default function Keyboard() {
-  const rows = keys.map(row => row.map(c => <Key character={c} />));
+  const rows = keys.map(row => row.map(c => <Key key={c} character={c} />));
 
   return (
     <>
