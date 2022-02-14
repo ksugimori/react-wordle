@@ -12,11 +12,7 @@ const Char = styled.div<{ empty: boolean }>`
   font-size: 2em;
   font-weight: bold;
   margin: 0.1em;
-  border: 2px solid #000;
-
-  ${(props: { empty: boolean }) => props.empty && `
-    border-color: #ccc;
-  `}
+  border: 2px solid ${props => props.empty ? '#ccc' : '#000'}
 `;
 
 type Props = {
