@@ -1,4 +1,7 @@
 import React from "react";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { selectWords, addWord } from "../../features/game/gameSlice";
+
 import Word from "./Word";
 
 import styled from "styled-components";
@@ -15,15 +18,18 @@ const List = styled.div`
 `;
 
 export default function WordList() {
+  const words = useAppSelector(selectWords);
+  const dispatch = useAppDispatch();
+
+  const wordComponents = Array(6).fill('')
+    .map((_, i) => words[i] || '')
+    .map(w => <Word value={w} />);
+  console.log(wordComponents);
+
   return (
-    <Container>
+    <Container onClick={() => dispatch(addWord("abcde"))}>
       <List>
-        <Word value="plain"></Word>
-        <Word value="order"></Word>
-        <Word value="ap"></Word>
-        <Word value=""></Word>
-        <Word value=""></Word>
-        <Word value=""></Word>
+        {wordComponents}
       </List>
     </Container>
   );
