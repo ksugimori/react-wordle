@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.div<{ active: boolean }>`
   display: flex;
+  background-color: ${props => props.active ? '#ffd6d6' : 'transparent'}
 `;
 
 const Char = styled.div<{ empty: boolean }>`
@@ -17,12 +18,13 @@ const Char = styled.div<{ empty: boolean }>`
 
 type Props = {
   value: string;
+  focus: boolean;
 }
 
-export default function Word({ value }: Props) {
+export default function Word({ value, focus }: Props) {
   const chars = Array(5).fill('')
     .map((_, i) => value.charAt(i).toUpperCase())
     .map((c, i) => <Char key={i} empty={!c}>{c}</Char>);
 
-  return <Container>{chars}</Container>;
+  return <Container active={focus}>{chars}</Container>;
 }

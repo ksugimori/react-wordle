@@ -21,10 +21,11 @@ export default function WordList() {
   const words = useAppSelector(selectWords);
   const dispatch = useAppDispatch();
 
+  const next = words.length;
+
   const wordComponents = Array(6).fill('')
     .map((_, i) => words[i] || '')
-    .map(w => <Word value={w} />);
-  console.log(wordComponents);
+    .map((w, i) => <Word key={i} value={w} focus={next === i} />);
 
   return (
     <Container onClick={() => dispatch(addWord("abcde"))}>
