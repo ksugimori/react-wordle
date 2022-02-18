@@ -4,6 +4,9 @@ import styled, { css } from "styled-components";
 type Props = {
   /** 印字する文字 */
   character: string;
+
+  /** クリックイベントのハンドラー */
+  onClick: () => {}
 }
 
 const Border = styled.div`
@@ -20,11 +23,11 @@ const Border = styled.div`
   `}
 `;
 
-export default function Key({ character }: Props) {
+export default function Key({ character, onClick }: Props) {
   const isLarge = character.length > 1; // 複数文字は特殊キーとする
   const text = isLarge ? character : character.toUpperCase();
 
   return (
-    <Border large={isLarge}>{text}</Border>
+    <Border large={isLarge} onClick={onClick}>{text}</Border>
   );
 }

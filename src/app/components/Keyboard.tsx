@@ -1,6 +1,8 @@
 import React from "react";
 import Key from "./Key";
 import styled from "styled-components";
+import { useAppDispatch } from "../hooks";
+import { inputChar } from "../../features/game/gameSlice";
 
 // キーボードの並び
 const keys = [
@@ -15,7 +17,11 @@ const Row = styled.div`
 `
 
 export default function Keyboard() {
-  const rows = keys.map(row => row.map(c => <Key key={c} character={c} />));
+  const dispatch = useAppDispatch();
+
+  const rows = keys.map(row => row.map(c => (
+    <Key key={c} character={c} onClick={() => dispatch(inputChar(c))} />
+  )));
 
   return (
     <>
