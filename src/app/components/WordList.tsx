@@ -1,6 +1,6 @@
 import React from "react";
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { selectWords, addWord } from "../../features/game/gameSlice";
+import { useAppSelector } from '../../app/hooks';
+import { selectWords } from "../../features/game/gameSlice";
 
 import Word from "./Word";
 
@@ -19,7 +19,6 @@ const List = styled.div`
 
 export default function WordList() {
   const words = useAppSelector(selectWords);
-  const dispatch = useAppDispatch();
 
   const next = words.length;
 
@@ -28,7 +27,7 @@ export default function WordList() {
     .map((w, i) => <Word key={i} value={w} focus={next === i} />);
 
   return (
-    <Container onClick={() => dispatch(addWord("abcde"))}>
+    <Container>
       <List>
         {wordComponents}
       </List>

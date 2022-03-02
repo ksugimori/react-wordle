@@ -2,7 +2,7 @@ import React from "react";
 import Key from "./Key";
 import styled from "styled-components";
 import { useAppDispatch } from "../hooks";
-import { inputChar } from "../../features/game/gameSlice";
+import { inputCharacter, deleteCharacter, submitWord } from "../../features/game/gameSlice";
 
 // キーボードの並び
 const keys = [
@@ -20,7 +20,15 @@ export default function Keyboard() {
   const dispatch = useAppDispatch();
 
   const rows = keys.map(row => row.map(c => (
-    <Key key={c} character={c} onClick={() => dispatch(inputChar(c))} />
+    <Key key={c} character={c} onClick={() => {
+      if (c === 'ENTER') {
+        return dispatch(submitWord());
+      } else if (c === 'Del') {
+        return dispatch(deleteCharacter());
+      } else {
+        return dispatch(inputCharacter(c));
+      }
+    }} />
   )));
 
   return (

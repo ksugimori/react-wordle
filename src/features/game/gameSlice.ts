@@ -15,7 +15,7 @@ export interface GameState {
 }
 
 const initialState: GameState = {
-  words: ['a', 'bc', 'def'], // TODO: ここ空に
+  words: [],
   current: '',
   status: 'play'
 };
@@ -24,9 +24,16 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    addWord: (state, action: PayloadAction<string>) => {
+    submitWord: (state) => {
       if (state.status === 'play') {
-        state.words.push(action.payload);
+        state.words.push(state.current);
+        state.current = '';
+      }
+    },
+
+    deleteCharacter: (state) => {
+      if (state.status === 'play') {
+        state.current = state.current.slice(0, state.current.length - 1);
       }
     },
 
@@ -35,7 +42,7 @@ export const gameSlice = createSlice({
       state.status = 'play'
     },
 
-    inputChar: (state, action: PayloadAction<string>) => {
+    inputCharacter: (state, action: PayloadAction<string>) => {
       if (state.current.length < 5) {
         state.current += action.payload;
       }
@@ -46,7 +53,7 @@ export const gameSlice = createSlice({
 //
 // Actions
 //
-export const { addWord, reset, inputChar } = gameSlice.actions;
+export const { submitWord, reset, inputCharacter, deleteCharacter } = gameSlice.actions;
 
 //
 // Selectors
