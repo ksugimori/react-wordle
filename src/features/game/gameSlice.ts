@@ -24,6 +24,31 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    /**
+     * 文字を入力する。
+     * @param state GameState
+     * @param action 入力する文字を持ったアクション
+     */
+    inputCharacter: (state, action: PayloadAction<string>) => {
+      if (state.current.length < 5) {
+        state.current += action.payload;
+      }
+    },
+
+    /**
+     * 文字を削除する。
+     * @param state GameState
+     */
+    deleteCharacter: (state) => {
+      if (state.status === 'play') {
+        state.current = state.current.slice(0, state.current.length - 1);
+      }
+    },
+
+    /**
+     * Word を確定する。
+     * @param state GameState
+     */
     submitWord: (state) => {
       if (state.status === 'play') {
         state.words.push(state.current);
@@ -31,21 +56,12 @@ export const gameSlice = createSlice({
       }
     },
 
-    deleteCharacter: (state) => {
-      if (state.status === 'play') {
-        state.current = state.current.slice(0, state.current.length - 1);
-      }
-    },
-
+    /**
+     * ゲームをリセットする。
+     * @param state GameState
+     */
     reset: (state) => {
-      state.words = [];
-      state.status = 'play'
-    },
-
-    inputCharacter: (state, action: PayloadAction<string>) => {
-      if (state.current.length < 5) {
-        state.current += action.payload;
-      }
+      state = initialState;
     }
   }
 });
@@ -53,7 +69,7 @@ export const gameSlice = createSlice({
 //
 // Actions
 //
-export const { submitWord, reset, inputCharacter, deleteCharacter } = gameSlice.actions;
+export const { inputCharacter, deleteCharacter, submitWord, reset } = gameSlice.actions;
 
 //
 // Selectors
