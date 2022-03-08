@@ -50,7 +50,7 @@ export const gameSlice = createSlice({
      * @param state GameState
      */
     submitWord: (state) => {
-      if (state.status === 'play') {
+      if (state.status === 'play' && state.current.length === 5) {
         state.words.push(state.current);
         state.current = '';
       }
