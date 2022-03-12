@@ -5,9 +5,6 @@ export interface GameState {
   /** ワードのリスト */
   words: string[];
 
-  /** 現在入力中のワード */
-  current: string;
-
   /** ステータス */
   status: 'play' | 'win' | 'lose';
 
@@ -16,7 +13,6 @@ export interface GameState {
 
 const initialState: GameState = {
   words: [],
-  current: '',
   status: 'play'
 };
 
@@ -25,34 +21,13 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     /**
-     * 文字を入力する。
-     * @param state GameState
-     * @param action 入力する文字を持ったアクション
-     */
-    inputCharacter: (state, action: PayloadAction<string>) => {
-      if (state.current.length < 5) {
-        state.current += action.payload;
-      }
-    },
-
-    /**
-     * 文字を削除する。
-     * @param state GameState
-     */
-    deleteCharacter: (state) => {
-      if (state.status === 'play') {
-        state.current = state.current.slice(0, state.current.length - 1);
-      }
-    },
-
-    /**
      * Word を確定する。
      * @param state GameState
      */
-    submitWord: (state) => {
-      if (state.status === 'play' && state.current.length === 5) {
-        state.words.push(state.current);
-        state.current = '';
+    submitWord: (state, action: PayloadAction<string>) => {
+      const word = action.payload;
+      if (state.status === 'play' && word.length === 5) {
+        state.words.push(word);
       }
     },
 
@@ -69,14 +44,13 @@ export const gameSlice = createSlice({
 //
 // Actions
 //
-export const { inputCharacter, deleteCharacter, submitWord, reset } = gameSlice.actions;
+export const { submitWord, reset } = gameSlice.actions;
 
 //
 // Selectors
 //
 export const selectWords = (state: RootState) => state.game.words;
 export const selectStatus = (state: RootState) => state.game.status;
-export const selectCurrent = (state: RootState) => state.game.current;
 
 //
 // Reducer
