@@ -18,18 +18,28 @@ const List = styled.div`
   flex-direction: column;
 `;
 
+function sequence(n: number) {
+  if (n <= 0) {
+    return [];
+  }
+
+  return Array(n).fill(null).map((_, i) => i);
+}
+
 export default function WordList() {
   const words = useAppSelector(selectWords);
 
-  const wordComponents = Array(6).fill('')
-    .map((_, i) => words[i] || '')
-    .map((w, i) => <Word key={i} value={w} />);
+  const wordComponents = words.map((w, i) => <Word key={i} value={w} />);
+  const emptyWordComponents = sequence(5 - words.length).map((_, i) => <Word key={i} value={''} />);
 
   return (
     <Container>
       <List>
         {wordComponents}
         <WordInput />
+        <>
+          {emptyWordComponents}
+        </>
       </List>
     </Container>
   );

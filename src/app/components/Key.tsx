@@ -3,13 +3,10 @@ import styled, { css } from "styled-components";
 
 type Props = {
   /** 印字する文字 */
-  character: string;
-
-  /** クリックイベントのハンドラー */
-  onClick: () => {}
+  keyTop: string;
 }
 
-const Border = styled.div`
+const Container = styled.div`
   margin: 0.2em;
   width: 3em;
   height: 3.4em;
@@ -18,16 +15,30 @@ const Border = styled.div`
   border-radius: 0.3em;
   background-color: #f3f3f3;
 
+  &:hover {
+    background-color: #dfdfdf;
+  }
+
   ${(props: { large: boolean }) => props.large && css`
     width: 4.9em;
   `}
 `;
 
-export default function Key({ character, onClick }: Props) {
-  const isLarge = character.length > 1; // 複数文字は特殊キーとする
-  const text = isLarge ? character : character.toUpperCase();
+export default function Key({ keyTop }: Props) {
+  const isLarge = keyTop.length > 1; // 複数文字は特殊キーとする
 
-  return (
-    <Border large={isLarge} onClick={onClick}>{text}</Border>
-  );
+  const handleClick = () => {
+    let key;
+    if (keyTop === 'ENTER') {
+      key = 'Enter';
+    } else if (keyTop === 'Del') {
+      key = 'Delete';
+    } else {
+      key = keyTop;
+    }
+    const event = new KeyboardEvent('keydown', { key });
+    document.dispatchEvent(event);
+  }
+
+  return <Container large={isLarge} onClick={handleClick}>{keyTop}</Container>;
 }
