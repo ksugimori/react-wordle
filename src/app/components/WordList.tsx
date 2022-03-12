@@ -5,6 +5,7 @@ import { selectWords } from "../../features/game/gameSlice";
 import Word from "./Word";
 
 import styled from "styled-components";
+import WordInput from "./WordInput";
 
 const Container = styled.div`
   display: flex;
@@ -20,16 +21,15 @@ const List = styled.div`
 export default function WordList() {
   const words = useAppSelector(selectWords);
 
-  const next = words.length;
-
   const wordComponents = Array(6).fill('')
     .map((_, i) => words[i] || '')
-    .map((w, i) => <Word key={i} value={w} focus={next === i} />);
+    .map((w, i) => <Word key={i} value={w} />);
 
   return (
     <Container>
       <List>
         {wordComponents}
+        <WordInput />
       </List>
     </Container>
   );

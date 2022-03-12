@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppSelector } from "../hooks";
-import { selectCurrent } from "../../features/game/gameSlice";
 
 const Container = styled.div`
   display: flex;
@@ -19,15 +17,11 @@ const Char = styled.div<{ empty: boolean }>`
 
 type Props = {
   value: string;
-  focus: boolean;
 }
 
-export default function Word({ value, focus }: Props) {
-  const current = useAppSelector(selectCurrent);
-
-  const src = focus ? current : value;
+export default function Word({ value }: Props) {
   const chars = Array(5).fill('')
-    .map((_, i) => src.charAt(i).toUpperCase())
+    .map((_, i) => value.charAt(i).toUpperCase())
     .map((c, i) => <Char key={i} empty={!c}>{c}</Char>);
 
   return <Container>{chars}</Container>;
