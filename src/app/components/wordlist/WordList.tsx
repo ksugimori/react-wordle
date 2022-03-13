@@ -13,11 +13,6 @@ const Container = styled.div`
   padding: 1em 0;
 `;
 
-const List = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 function sequence(n: number) {
   if (n <= 0) {
     return [];
@@ -34,13 +29,13 @@ export default function WordList() {
 
   return (
     <Container>
-      <List>
+      <div className="flex-col">
         {wordComponents}
         <WordInput />
         <>
           {emptyWordComponents}
         </>
-      </List>
+      </div>
     </Container>
   );
 }

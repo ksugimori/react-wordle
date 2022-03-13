@@ -28,7 +28,5 @@ export default function WordInput() {
     return () => document.removeEventListener('keydown', handleKeydown);
   }, [handleKeydown]);
 
-  return (
-    <Word value={value} />
-  );
+  return <Word value={value} />;
 }

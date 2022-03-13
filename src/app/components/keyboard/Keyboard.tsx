@@ -1,29 +1,27 @@
 import React from "react";
 import Key from "./Key";
-import styled from "styled-components";
 
 // キーボードの並び
-const keys = [
+const KEY_ROWS = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
   ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Del']
 ]
 
-const Row = styled.div`
-  display: flex;
-  justify-content: center;
-`
+function KeyboardRow({ keys }: { keys: string[] }) {
+  return (
+    <div className="flex-row justify-content-center">
+      {keys.map(e => <Key key={e} keyTop={e} />)}
+    </div>
+  );
+}
 
 export default function Keyboard() {
-  const rows = keys.map(row => row.map(c => (
-    <Key key={c} keyTop={c} />
-  )));
-
   return (
     <>
-      <Row>{rows[0]}</Row>
-      <Row>{rows[1]}</Row>
-      <Row>{rows[2]}</Row>
+      <KeyboardRow keys={KEY_ROWS[0]} />
+      <KeyboardRow keys={KEY_ROWS[1]} />
+      <KeyboardRow keys={KEY_ROWS[2]} />
     </>
   );
 }

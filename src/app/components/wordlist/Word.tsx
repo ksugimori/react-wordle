@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-`;
-
 const Char = styled.div<{ empty: boolean }>`
   width: 3rem;
   height: 3rem;
@@ -24,5 +20,5 @@ export default function Word({ value }: Props) {
     .map((_, i) => value.charAt(i).toUpperCase())
     .map((c, i) => <Char key={i} empty={!c}>{c}</Char>);
 
-  return <Container>{chars}</Container>;
+  return <div className="flex-row">{chars}</div>;
 }
