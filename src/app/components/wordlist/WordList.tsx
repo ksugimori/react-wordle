@@ -1,6 +1,6 @@
 import React from "react";
-import { useAppSelector } from '../../app/hooks';
-import { selectWords } from "../../features/game/gameSlice";
+import { useAppSelector } from '../../hooks';
+import { selectWords } from "../../../features/game/gameSlice";
 
 import Word from "./Word";
 

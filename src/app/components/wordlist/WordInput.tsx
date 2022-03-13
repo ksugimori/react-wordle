@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
-import { useAppDispatch } from "../hooks";
-import { submitWord } from "../../features/game/gameSlice";
+import { useAppDispatch } from "../../hooks";
+import { submitWord } from "../../../features/game/gameSlice";
 import Word from "./Word";
 
 export default function WordInput() {
