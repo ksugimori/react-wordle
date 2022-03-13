@@ -36,7 +36,7 @@ export const gameSlice = createSlice({
      * @param state GameState
      */
     reset: (state) => {
-      state = initialState;
+      Object.assign(state, initialState);
     }
   }
 });
