@@ -1,13 +1,11 @@
 import React from "react";
 import Key from "./Key";
 
-// キーボードの並び
-const KEY_ROWS = [
-  ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-  ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Del']
-]
-
+/**
+ * キーボードの１行
+ * @param props キーの文字の配列
+ * @returns １行分のキー
+ */
 function KeyboardRow({ keys }: { keys: string[] }) {
   return (
     <div className="flex-row justify-content-center">
@@ -16,12 +14,16 @@ function KeyboardRow({ keys }: { keys: string[] }) {
   );
 }
 
+/**
+ * キーボード
+ * @returns キーボードコンポーネント
+ */
 export default function Keyboard() {
   return (
     <>
-      <KeyboardRow keys={KEY_ROWS[0]} />
-      <KeyboardRow keys={KEY_ROWS[1]} />
-      <KeyboardRow keys={KEY_ROWS[2]} />
+      <KeyboardRow keys={['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']} />
+      <KeyboardRow keys={['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']} />
+      <KeyboardRow keys={['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Del']} />
     </>
   );
 }

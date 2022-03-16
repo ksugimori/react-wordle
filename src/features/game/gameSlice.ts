@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
+/**
+ * ゲームの状態
+ */
 export interface GameState {
   /** ワードのリスト */
   words: string[];
@@ -11,11 +14,17 @@ export interface GameState {
   // TODO: ハズレ文字のリストとかも持つ？
 }
 
+/**
+ * 初期状態
+ */
 const initialState: GameState = {
   words: [],
   status: 'play'
 };
 
+/**
+ * 
+ */
 export const gameSlice = createSlice({
   name: 'game',
   initialState,

@@ -7,6 +7,10 @@ const UnderlinedHeader = styled.header`
   border-bottom: 1px solid #f3f3f3;
 `;
 
+/**
+ * ヘッダー
+ * @returns ヘッダーコンポーネント
+ */
 export default function Header() {
   return (
     <UnderlinedHeader>WORDLE</UnderlinedHeader>
