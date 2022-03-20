@@ -18,7 +18,7 @@ const Char = styled.div<{ empty: boolean }>`
  * Word の props
  */
 type Props = {
-  value: string;
+  value?: string;
 }
 
 /**
@@ -30,7 +30,7 @@ type Props = {
  */
 export default function Word({ value }: Props) {
   const chars = Array(5).fill('')
-    .map((_, i) => value.charAt(i).toUpperCase())
+    .map((_, i) => value?.charAt(i).toUpperCase() || '')
     .map((c, i) => <Char key={i} empty={!c}>{c}</Char>);
 
   return <div className="flex-row">{chars}</div>;

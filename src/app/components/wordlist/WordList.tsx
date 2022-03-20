@@ -6,6 +6,7 @@ import Word from "./Word";
 
 import styled from "styled-components";
 import WordInput from "./WordInput";
+import ArrayUtils from "../../utils/ArrayUtils";
 
 const Container = styled.div`
   display: flex;
@@ -13,19 +14,11 @@ const Container = styled.div`
   padding: 1em 0;
 `;
 
-function sequence(n: number) {
-  if (n <= 0) {
-    return [];
-  }
-
-  return Array(n).fill(null).map((_, i) => i);
-}
-
 export default function WordList() {
   const words = useAppSelector(selectWords);
 
   const wordComponents = words.map((w, i) => <Word key={i} value={w} />);
-  const emptyWordComponents = sequence(5 - words.length).map((_, i) => <Word key={i} value={''} />);
+  const emptyWordComponents = ArrayUtils.sequence(5 - words.length).map(i => <Word key={i} />);
 
   return (
     <Container>
