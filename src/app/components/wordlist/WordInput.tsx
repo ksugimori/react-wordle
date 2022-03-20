@@ -12,16 +12,17 @@ import Word from "./Word";
  */
 export default function WordInput() {
   const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
+
   const valueRef = useRef(''); // ここの valueRef は何度レンダーされても同じオブジェクトを参照している
   valueRef.current = value;
-  const dispatch = useAppDispatch();
 
   const handleKeydown = useCallback((event: KeyboardEvent) => {
     const key = event.key;
 
     const currentValue = valueRef.current; // valueRef を経由して最新の値を取得
     if (key.match(/^[a-zA-Z]$/) && currentValue.length < 5) {
-      setValue(currentValue + key);
+      setValue(currentValue + key.toUpperCase());
     } else if (key === 'Enter' && currentValue.length === 5) {
       dispatch(submitWord(currentValue));
       setValue('');

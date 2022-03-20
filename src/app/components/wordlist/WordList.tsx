@@ -7,6 +7,7 @@ import Word from "./Word";
 import styled from "styled-components";
 import WordInput from "./WordInput";
 import ArrayUtils from "../../utils/ArrayUtils";
+import FixedWord from "./FixedWord";
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const Container = styled.div`
 export default function WordList() {
   const words = useAppSelector(selectWords);
 
-  const wordComponents = words.map((w, i) => <Word key={i} value={w} />);
+  const wordComponents = words.map((w, i) => <FixedWord key={i} value={w} />);
   const emptyWordComponents = ArrayUtils.sequence(5 - words.length).map(i => <Word key={i} />);
 
   return (

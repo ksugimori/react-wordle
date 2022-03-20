@@ -21,7 +21,7 @@ export interface GameState {
  * 初期状態
  */
 const initialState: GameState = {
-  answer: 'along', // TODO: ランダム化
+  answer: 'ALONG', // TODO: ランダム化
   words: [],
   status: 'play'
 };
@@ -64,6 +64,7 @@ export const { submitWord, reset } = gameSlice.actions;
 //
 export const selectWords = (state: RootState) => state.game.words;
 export const selectStatus = (state: RootState) => state.game.status;
+export const selectAnswer = (state: RootState) => state.game.answer;
 
 //
 // Reducer

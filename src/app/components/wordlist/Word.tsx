@@ -1,18 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-
-/**
- * １つの文字
- */
-const Char = styled.div<{ empty: boolean }>`
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
-  font-size: 2em;
-  font-weight: bold;
-  margin: 0.1em;
-  border: 2px solid ${props => props.empty ? '#ccc' : '#000'}
-`;
+import { Color } from "../../App.interface";
+import ArrayUtils from "../../utils/ArrayUtils";
+import Character from "./Character";
 
 /**
  * Word の props
@@ -29,9 +18,15 @@ type Props = {
  * @returns Word
  */
 export default function Word({ value }: Props) {
-  const chars = Array(5).fill('')
-    .map((_, i) => value?.charAt(i).toUpperCase() || '')
-    .map((c, i) => <Char key={i} empty={!c}>{c}</Char>);
+  const chars = ArrayUtils.sequence(5)
+    .map(i => value?.charAt(i) || '')
+    .map((c, i) => (
+      <Character
+        key={i}
+        value={c}
+        color={c.length > 0 ? Color.FILLED : Color.EMPTY}
+      />
+    ));
 
   return <div className="flex-row">{chars}</div>;
 }
