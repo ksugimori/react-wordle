@@ -5,6 +5,9 @@ import { RootState } from "../../app/store";
  * ゲームの状態
  */
 export interface GameState {
+  /** 正解 */
+  answer: string;
+
   /** ワードのリスト */
   words: string[];
 
@@ -18,6 +21,7 @@ export interface GameState {
  * 初期状態
  */
 const initialState: GameState = {
+  answer: 'along', // TODO: ランダム化
   words: [],
   status: 'play'
 };
