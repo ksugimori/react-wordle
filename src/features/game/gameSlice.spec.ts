@@ -6,7 +6,7 @@ import gameReducer, {
 
 describe('game reducer', () => {
   const initialState: GameState = {
-    answer: 'along',
+    answer: 'ALONG',
     words: ['first'],
     status: 'play'
   };
@@ -41,11 +41,10 @@ describe('game reducer', () => {
 
     test('初期状態にリセットされること', () => {
       const actual = gameReducer(initialState, reset());
-      expect(actual).toEqual({
-        answer: 'along',
-        words: [],
-        status: 'play'
-      })
+
+      expect(actual.answer.length).toBe(5); // 正解はランダムなので5文字であれば良しとする
+      expect(actual.words).toStrictEqual([]);
+      expect(actual.status).toBe('play');
     })
 
   })
